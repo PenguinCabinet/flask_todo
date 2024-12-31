@@ -1,0 +1,35 @@
+<html>
+
+<head></head>
+
+<body>
+    <p>HOME!</p>
+    <form method="post" action="/api/logout">
+        <input type="submit" value="ログアウト" />
+    </form>
+    <script>
+        async function Update_TODO() {
+            let todo_p = document.getElementById("todo");
+            const json_todo = await (await fetch("/api/todo")).json();
+            todo_p.innerText = json_todo.map((e) => e.name).join("\n");
+        }
+        async function add_TODO() {
+            const add_TODO_form = document.getElementById("add_TODO_form");
+            (await fetch("/api/todo", {
+                method: "POST",
+                body: new FormData(add_TODO_form),
+            }))
+
+        }
+    </script>
+    <form id="add_TODO_form" onsubmit="add_TODO();return false;">
+        <p><label>タスク名</label><input id="form_TODO_name" name="name"></p>
+        <input type="submit" value="追加" />
+    </form>
+    <p>
+        <button onclick="Update_TODO()">TODO view fetch</button>
+    </p>
+    <pre id="todo"></pre>
+</body>
+
+</html>
