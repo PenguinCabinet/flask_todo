@@ -2,7 +2,7 @@
 
 # flask_TODO
 
-TODO作成をするWEBアプリケーション。    
+TODOアプリ(?)。       
 勉強用に作成。   
 
 ![img](img/img1.png)    
